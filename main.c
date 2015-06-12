@@ -1,4 +1,5 @@
 ﻿#include <stdio.h>
+#include <stdlib.h>
 /*************
     @description draw a rhombus
     @parameter int l: left position
@@ -119,13 +120,82 @@ int upstairs(int n)
     return upstairs(n-1) + upstairs(n-2);
 }
 
+
+struct BinaryTreeNode
+{
+    int value;
+    struct BinaryTreeNode *left;
+    struct BinaryTreeNode *right;
+};
+
+struct BinaryTreeNode* generateTree()
+{
+//    BinaryTreeNode *root;
+//    BinaryTreeNode *head;
+//    BinaryTreeNode *temp;
+//    root = (BinaryTreeNode*)malloc(sizeof(BinaryTreeNode));
+//    head = root;
+//    root->value = 1;
+//    temp = (BinaryTreeNode*)malloc(sizeof(BinaryTreeNode));
+//    temp->value = 2;
+//    root->left = temp;
+//    temp = (BinaryTreeNode*)malloc(sizeof(BinaryTreeNode));
+//    temp->value = 5;
+//    root->right = temp;
+
+    int value;
+    struct BinaryTreeNode *root;
+    scanf("%d", &value);
+    if(0 == value) return NULL;
+    root = (struct BinaryTreeNode*)malloc(sizeof(struct BinaryTreeNode));
+    root->value = value;
+    root->left = generateTree();
+    root->right = generateTree();
+    return root;
+}
+void pOrder(struct BinaryTreeNode *root)
+{
+    if(NULL == root) return;
+    printf("%d ", root->value);
+    pOrder(root->left);
+    pOrder(root->right);
+}
+
+void mOrder(struct BinaryTreeNode *root)
+{
+    if(NULL == root) return;
+    mOrder(root->left);
+    printf("%d ", root->value);
+    mOrder(root->right);
+
+}
+
+void aOrder(struct BinaryTreeNode *root)
+{
+    if(NULL == root) return;
+    aOrder(root->left);
+    aOrder(root->right);
+    printf("%d ", root->value);
+}
+void binaryTree()
+{
+    struct BinaryTreeNode *root;
+    root = generateTree();
+    pOrder(root);
+    printf("\n");
+    mOrder(root);
+    printf("\n");
+    aOrder(root);
+
+}
 int main()
 {
     int n = 0;
-    scanf("%d", &n);
+    //scanf("%d", &n);
    // rhombus(times-1, times-1, 2*times -1);
     //rect(1, times/2, times, times);
     //rect(1, n);
-    printf("%d", upstairs(n));
+    //printf("%d", upstairs(n));
+    binaryTree();
     return 0;
 }
