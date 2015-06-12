@@ -128,21 +128,9 @@ struct BinaryTreeNode
     struct BinaryTreeNode *right;
 };
 
+//先序生成二叉树
 struct BinaryTreeNode* generateTree()
 {
-//    BinaryTreeNode *root;
-//    BinaryTreeNode *head;
-//    BinaryTreeNode *temp;
-//    root = (BinaryTreeNode*)malloc(sizeof(BinaryTreeNode));
-//    head = root;
-//    root->value = 1;
-//    temp = (BinaryTreeNode*)malloc(sizeof(BinaryTreeNode));
-//    temp->value = 2;
-//    root->left = temp;
-//    temp = (BinaryTreeNode*)malloc(sizeof(BinaryTreeNode));
-//    temp->value = 5;
-//    root->right = temp;
-
     int value;
     struct BinaryTreeNode *root;
     scanf("%d", &value);
@@ -153,6 +141,7 @@ struct BinaryTreeNode* generateTree()
     root->right = generateTree();
     return root;
 }
+//先序遍历二叉树
 void pOrder(struct BinaryTreeNode *root)
 {
     if(NULL == root) return;
@@ -160,7 +149,7 @@ void pOrder(struct BinaryTreeNode *root)
     pOrder(root->left);
     pOrder(root->right);
 }
-
+//中序遍历二叉树
 void mOrder(struct BinaryTreeNode *root)
 {
     if(NULL == root) return;
@@ -169,7 +158,7 @@ void mOrder(struct BinaryTreeNode *root)
     mOrder(root->right);
 
 }
-
+//后序遍历二叉树
 void aOrder(struct BinaryTreeNode *root)
 {
     if(NULL == root) return;
