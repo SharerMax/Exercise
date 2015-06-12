@@ -1,4 +1,4 @@
-#include <stdio.h>
+﻿#include <stdio.h>
 /*************
     @description draw a rhombus
     @parameter int l: left position
@@ -101,12 +101,31 @@ void rect(int first, int n)
     }
 }
 
+/*******************
+    @description 楼梯有N（小于50的整数）阶，上楼可以一步上一价，也可以一次上二阶。
+                编一个程序，计算共有多少种不同的走法。(递归实现)
+    @parameter  int n 楼梯阶数
+********************/
+int upstairs(int n)
+{
+    if(1 == n) {
+        return 1;
+    }
+
+    if(2 == n) {
+        return 2;
+    }
+
+    return upstairs(n-1) + upstairs(n-2);
+}
+
 int main()
 {
-    int times = 0;
-    scanf("%d", &times);
+    int n = 0;
+    scanf("%d", &n);
    // rhombus(times-1, times-1, 2*times -1);
     //rect(1, times/2, times, times);
-    rect(1, times);
+    //rect(1, n);
+    printf("%d", upstairs(n));
     return 0;
 }
