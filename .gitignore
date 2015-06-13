@@ -3,3 +3,6 @@ obj/
 *.cbp
 *.depend
 *.layout
+*.vcxproj*
+[Dd]ebug/
+[Rr]ealease/

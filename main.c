@@ -1,5 +1,6 @@
 ﻿#include <stdio.h>
 #include <stdlib.h>
+
 /*************
     @description draw a rhombus
     @parameter int l: left position
@@ -133,7 +134,7 @@ struct BinaryTreeNode* generateTree()
 {
     int value;
     struct BinaryTreeNode *root;
-    scanf("%d", &value);
+    scanf_s("%d", &value);
     if(0 == value) return NULL;
     root = (struct BinaryTreeNode*)malloc(sizeof(struct BinaryTreeNode));
     root->value = value;
@@ -166,6 +167,17 @@ void aOrder(struct BinaryTreeNode *root)
     aOrder(root->right);
     printf("%d ", root->value);
 }
+//递归实现二叉树左、右支交换（翻转二叉树）
+void invertTree(struct BinaryTreeNode *root)
+{
+	struct BinaryTreeNode *swap;
+	if (NULL == root) return;
+	swap = root->left;
+	root->left = root->right;
+	root->right = swap;
+	invertTree(root->left);
+	invertTree(root->right);
+}
 void binaryTree()
 {
     struct BinaryTreeNode *root;
@@ -175,16 +187,21 @@ void binaryTree()
     mOrder(root);
     printf("\n");
     aOrder(root);
+	printf("\n");
+	invertTree(root);
+	pOrder(root);
 
 }
+
 int main()
 {
     int n = 0;
-    //scanf("%d", &n);
+    //scanf_s("%d", &n);
    // rhombus(times-1, times-1, 2*times -1);
     //rect(1, times/2, times, times);
     //rect(1, n);
     //printf("%d", upstairs(n));
     binaryTree();
+	
     return 0;
 }
